@@ -1,0 +1,18 @@
+<?php
+
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+    Route::get('/auth/login', [AuthController::class,'showLogin'])->name('login');
+    Route::post('/auth/login',[AuthController::class,'doLogin'])->name('auth.doLogin');
+
+
+    Route::get('/auth/logout', [AuthController::class,'logout'])->name('logout');
+
+    Route::get('/home/acceuil', function () {
+    return view('acceuil');
+    })->name('home.acceuil');

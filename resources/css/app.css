@@ -1,0 +1,132 @@
+@import url(reset.css);
+
+header{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    background-color: var(--black);
+    align-items: center;
+    box-shadow: 0 2px 6px #0000001f,inset 0 -1px #dadce0;
+    color: var(--text-color);
+}
+
+header figure{
+    width: 100rem;
+    height: 40px;
+    margin-left: 10px;
+
+}
+
+header figure img {
+    width: 20rem;
+    margin-right: 20px;
+    transition: .4s ease-in-out;
+}
+
+header figure img:hover{
+    transform: scale(1.1);
+    opacity: .6;
+}
+
+header h1{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    text-align: center;
+
+}
+header nav {
+    position: absolute;
+    right: 0;
+}
+
+header nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul li{
+    width: 200px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+
+
+}
+
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.image{
+    background-image:url("../../public/asset/alex-knight-2EJCSULRwC8-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.form {
+    display: flex;
+    color: black;
+    position: relative;
+
+}
+.form h2{
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    font-size: 3rem;
+
+}
+
+.form form{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    margin: 10vh auto 2em auto;
+    padding: 9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 3);
+    background-color: var(--text-color);
+    color: var(--black);
+}
+
+.form label{
+    margin-bottom: 0.5em;
+    font-weight: bold;
+
+}
+
+.form input{
+    margin-bottom: 1em;
+    padding: 1em;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--black);
+    color: var(--text-color);
+}
+.form button{
+    padding: 0.7em;
+    background-color: var(--button);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+section button:hover{
+    background-color: var(--bg-color);
+}
