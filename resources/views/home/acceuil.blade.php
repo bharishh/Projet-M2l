@@ -20,7 +20,7 @@
         <ul>
             <li><a href="#">Lister</a></li>
             <li><img src="https://www.gabrielgorgi.com/wp-content/uploads/2019/12/01.jpg"></li>
-            <li><a href="#">Deconnexion</a></li>
+            <li><a href="{{route('auth.logout')}}">Deconnexion</a></li>
         </ul>
     </nav>
 </header>
