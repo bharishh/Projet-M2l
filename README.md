@@ -26,4 +26,4 @@ Ce projet consiste à développer une plateforme intranet pour une société en 
 - **Contrôle de version** : Git
 
 
-[link](https://bharishh.github.io/M2L/)
+
