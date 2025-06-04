@@ -35,15 +35,11 @@ class CollabController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+        public function show(Request $request)
     {
-        $collab = User::find(1); // Trouve l'utilisateur avec l'ID 1
-        // Tu pourrais ajouter une gestion d'erreur ici si l'utilisateur n'est pas trouvé
 
-        dd($collab);
-
-        return view('home.acceuil', ['collab' => $collab]);
     }
+
     /**
      * Show the form for editing the specified resource.
      */

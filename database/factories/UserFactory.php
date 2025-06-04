@@ -23,14 +23,18 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $chosenCivility = fake()->randomElement(['homme', 'femme']);
+        $firstName = ($chosenCivility === 'homme') ? fake()->firstNameMale() : fake()->firstNameFemale();
         return [
             'nom' => fake()->name(),
             'prenom' => fake()->name(),
             'telephone' => fake()->phoneNumber(),
-            'categorie' => fake()->domainName,
+            'civility' => $chosenCivility,
+            'categorie' => fake()->jobTitle(),
             'ville' => fake()->city(),
             'pays' => fake()->country(),
             'date_naissance' => fake()->date(),
+            'age'=>fake()->numberBetween(18, 65),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'image' => fake()->imageUrl(),

@@ -25,24 +25,46 @@
     </nav>
 </header>
 <main>
-    <h2>Liste collaborateurs</h2>
 
-    @if ($collab->isEmpty())
-        <p>Aucun employé trouvé.</p>
-    @else
-        @foreach ($collab as $collab)
-        <div class="container">
-            <div>
-                <img src="{{$collab->image}}" alt="">
+    <div class="main-layout-container">
+
+        <div class="middle-column">
+            <h1>Liste collaborateurs</h1>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Recherche par nom...">
             </div>
-        <ul>
-                <li>
-                    <strong>{{ $collab->prenom }} {{ $collab->nom }}</strong> - {{ $collab->categorie }} ({{ $collab->email }})
-                </li>
-        </ul>
+
+
+            <div class="collaborator-list-wrapper">
+                @foreach ($collab as $collab)
+
+                    <div class="collaborator-item">
+                        <div class="collaborator-image">
+                            <img src="{{ $collab->image }}" alt="">
+
+                        </div>
+                        <div class="collaborator-details">
+                            <p>
+                                <strong>{{ $collab->prenom }} {{ $collab->nom }}</strong> - ({{$collab->age}} ans)</p>
+                                        {{$collab->ville}}, {{$collab->pays}}
+
+                                        <h3>{{ $collab->categorie }}</h3>
+                            📲 : <a href="tel:{{$collab->telephone}}"> {{$collab->telephone}}</a><br>
+                            📧 : <a href="mailto:{{ $collab->email }}"> {{ $collab->email }}</a><br>
+                            <p>🎂 : {{$collab ->date_naissance}}</p>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
         </div>
-        @endforeach
-    @endif
+
+
+
+
+    </div>
 </main>
 </body>
 </html>
+

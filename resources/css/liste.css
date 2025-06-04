@@ -66,22 +66,128 @@ header nav ul li img{
     cursor: pointer;
 }
 
-.container{
-    border: 2px solid var(--button);
-    width: 50rem;
-    display: grid;
-    grid-template-columns: 2fr 2fr 3fr;
-    gap: 2rem;
-    padding: 2rem 1rem;
-}
-.container h3 {
-    text-align: end;
-}
 
-.container div img{
+
+.collaborator-item div img{
     height: 100px;
     width: 100px;
     border-radius:50%;
 
 }
+.main-layout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
 
+/* Column Styling */
+.left-column,
+.right-column {
+    flex: 1;
+    min-width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.middle-column {
+    flex: 2;
+    min-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Collaborator List Specific Styles */
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.collaborator-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.collaborator-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.collaborator-image {
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.collaborator-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+}
+
+.collaborator-details {
+    flex-grow: 1;
+}
+.collaborator-details h3{
+    text-align: end;
+}
+
+
+.collaborator-details strong {
+    color: #333;
+}
+
+.collaborator-details p {
+    margin: 0;
+    line-height: 1;
+}
+
+.collaborator-details a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.collaborator-details a:hover {
+    text-decoration: underline;
+}
+
+.collaborator-details .company {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Responsive adjustments (optional, but recommended) */
+@media (max-width: 768px) {
+    .main-layout-container {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+        align-items: center; /* Center items when stacked */
+    }
+
+    .left-column,
+    .middle-column,
+    .right-column {
+        width: 95%; /* Take almost full width */
+        margin-bottom: 20px; /* Add space between stacked columns */
+    }
+}
