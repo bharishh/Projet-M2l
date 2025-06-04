@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ Vite::asset('resources/css/home.css') }}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/liste.css') }}">
     <title>M2l</title>
 </head>
 <body>
@@ -18,38 +18,31 @@
 
     <nav>
         <ul>
-            <li><a href="{{route('collab.index')}}">Lister</a></li>
+            <li><a href="{{route('home.acceuil')}}">Acceuil</a></li>
             <li><img src="https://www.gabrielgorgi.com/wp-content/uploads/2019/12/01.jpg"></li>
             <li><a href="{{route('auth.logout')}}">Deconnexion</a></li>
         </ul>
     </nav>
 </header>
 <main>
-    <section class="slogan">
-        <h1>Bienvenue sur M2L,<br> <span>la plateforme qui vous permet de retrouver tous vos collaborateurs.</span></h1>
-    </section>
+    <h2>Liste collaborateurs</h2>
 
-    <section class="libelle">
-        <h2>Avez-vous dit bonjour à : </h2>
-
+    @if ($collab->isEmpty())
+        <p>Aucun employé trouvé.</p>
+    @else
+        @foreach ($collab as $collab)
         <div class="container">
-
             <div>
-                <img src="https://www.gabrielgorgi.com/wp-content/uploads/2019/12/01.jpg" alt="">
+                <img src="{{$collab->image}}" alt="">
             </div>
-
-            <div>
-                <ul>
-
-
-                </ul>
-            </div>
-            <h3>Technique</h3>
+        <ul>
+                <li>
+                    <strong>{{ $collab->prenom }} {{ $collab->nom }}</strong> - {{ $collab->categorie }} ({{ $collab->email }})
+                </li>
+        </ul>
         </div>
-        <button class="button" type="submit">dire bonjour a un autre Collaborateur</button>
-    </section>
-
+        @endforeach
+    @endif
 </main>
-
 </body>
 </html>

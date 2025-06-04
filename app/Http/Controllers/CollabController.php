@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CollabController extends Controller
@@ -11,7 +12,8 @@ class CollabController extends Controller
      */
     public function index()
     {
-        //
+        $collab = User::all();
+        return view('home.liste',['collab' => $collab]);
     }
 
     /**
@@ -33,11 +35,15 @@ class CollabController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
-    }
+        $collab = User::find(1); // Trouve l'utilisateur avec l'ID 1
+        // Tu pourrais ajouter une gestion d'erreur ici si l'utilisateur n'est pas trouvé
 
+        dd($collab);
+
+        return view('home.acceuil', ['collab' => $collab]);
+    }
     /**
      * Show the form for editing the specified resource.
      */
