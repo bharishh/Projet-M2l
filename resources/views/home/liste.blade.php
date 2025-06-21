@@ -41,7 +41,7 @@
 
                     <div class="collaborator-item">
                         <div class="collaborator-image">
-                            <img src="{{ $collaborateur->image }}" alt="">
+                            <img src="{{ asset('storage/' . $collaborateur->image) }}" alt="">
 
                         </div>
                         <div class="collaborator-details">
@@ -53,6 +53,9 @@
                                 @method('DELETE')
                                 <button>Supprimer</button>
                             </form>
+                            <button>
+                                <a href="{{route('collab.edit', $collaborateur)}}">Update</a>
+                            </button>
 
                             <h3>{{ $collaborateur->categorie }}</h3>
                             📲 : <a href="tel:{{ $collaborateur->telephone }}">{{ $collaborateur->telephone }}</a><br>

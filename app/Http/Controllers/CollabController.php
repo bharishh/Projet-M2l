@@ -61,18 +61,57 @@ class CollabController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $collaborateur = User::findOrFail($id);
+        return view('home.edit', compact('collaborateur'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'categorie' => 'required|string|max:255',
+            'civility' => 'required|string|in:homme,femme',
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'pays' => 'nullable|string|max:255',
+            'ville' => 'nullable|string|max:255',
+            'telephone' => 'nullable|string|max:20',
+            'date_naissance' => 'nullable|date',
+            'password' => 'nullable|string|min:6',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $collaborateur = User::findOrFail($id);
+
+        $collaborateur->categorie = $request->categorie;
+        $collaborateur->civility = $request->civility;
+        $collaborateur->nom = $request->nom;
+        $collaborateur->prenom = $request->prenom;
+        $collaborateur->email = $request->email;
+        $collaborateur->pays = $request->pays;
+        $collaborateur->ville = $request->ville;
+        $collaborateur->telephone = $request->telephone;
+        $collaborateur->date_naissance = $request->date_naissance;
+
+        if ($request->filled('password')) {
+            $collaborateur->password = bcrypt($request->password);
+        }
+
+        if ($request->hasFile('image')) {
+            $photoPath = $request->file('image')->store('photos', 'public');
+            $collaborateur->image = $photoPath;
+        }
+
+        $collaborateur->save();
+
+        return redirect()->route('collab.index')->with('success', 'Collaborateur modifié avec succès.');
     }
+
 
     /**
      * Remove the specified resource from storage.

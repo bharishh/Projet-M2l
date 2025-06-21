@@ -14,7 +14,7 @@ return new class extends Migration
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
                 $table->boolean('is_admin')->default(false);
-                $table->enum('civility', ['monsieur', 'madame', 'autre'])->change();
+                $table->enum('civility', ['homme', 'femme']);
                 $table->string('nom')->nullable();
                 $table->string('prenom')->nullable();
                 $table->string('telephone')->nullable();
@@ -44,6 +44,7 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->timestamp('login_at')->nullable();
         });
     }
 
