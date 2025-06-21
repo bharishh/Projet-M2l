@@ -19,8 +19,10 @@
     <nav>
         <ul>
             <li><a href="{{route('collab.index')}}">Lister</a></li>
+            <li><a href="{{route('collab.create')}}">Ajouter</a></li>
             <li><img src="https://www.gabrielgorgi.com/wp-content/uploads/2019/12/01.jpg"></li>
             <li><a href="{{route('auth.logout')}}">Deconnexion</a></li>
+
         </ul>
     </nav>
 </header>
