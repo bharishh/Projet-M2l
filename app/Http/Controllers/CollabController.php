@@ -13,8 +13,11 @@ class CollabController extends Controller
      */
     public function index()
     {
-        $collab = User::all();
-        return view('home.liste',['collab' => $collab]);
+        // Récupère tous les utilisateurs (collaborateurs)
+        $collaborateurs = User::all();
+
+        // Passe la collection à la vue sous le nom 'collaborateurs'
+        return view('home.liste', compact('collaborateurs'));
     }
 
     /**
@@ -74,8 +77,9 @@ class CollabController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $collab)
     {
-        //
+        $collab->delete();
+        return redirect()->route('collab.index')->with('success', 'Collaborateur supprimé');
     }
 }

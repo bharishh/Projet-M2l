@@ -37,22 +37,27 @@
 
 
             <div class="collaborator-list-wrapper">
-                @foreach ($collab as $collab)
+                @foreach ($collaborateurs as $collaborateur)
 
                     <div class="collaborator-item">
                         <div class="collaborator-image">
-                            <img src="{{ $collab->image }}" alt="">
+                            <img src="{{ $collaborateur->image }}" alt="">
 
                         </div>
                         <div class="collaborator-details">
                             <p>
-                                <strong>{{ $collab->prenom }} {{ $collab->nom }}</strong> - ({{$collab->age}} ans)</p>
-                                        {{$collab->ville}}, {{$collab->pays}}
+                               <p><strong>{{ $collaborateur->prenom }} {{ $collaborateur->nom }}</strong> - ({{ $collaborateur->age }} ans)</p>
+                            {{ $collaborateur->ville }}, {{ $collaborateur->pays }}
+                            <form action="{{ route('collab.destroy', $collaborateur) }}" method="post" onsubmit="return confirm('Confirmer la suppression ?');">
+                                @csrf
+                                @method('DELETE')
+                                <button>Supprimer</button>
+                            </form>
 
-                                        <h3>{{ $collab->categorie }}</h3>
-                            📲 : <a href="tel:{{$collab->telephone}}"> {{$collab->telephone}}</a><br>
-                            📧 : <a href="mailto:{{ $collab->email }}"> {{ $collab->email }}</a><br>
-                            <p>🎂 : {{$collab ->date_naissance}}</p>
+                            <h3>{{ $collaborateur->categorie }}</h3>
+                            📲 : <a href="tel:{{ $collaborateur->telephone }}">{{ $collaborateur->telephone }}</a><br>
+                            📧 : <a href="mailto:{{ $collaborateur->email }}">{{ $collaborateur->email }}</a><br>
+                            🎂 : {{ $collaborateur->date_naissance }}
                         </div>
                     </div>
                 @endforeach
