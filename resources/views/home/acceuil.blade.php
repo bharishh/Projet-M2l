@@ -20,7 +20,12 @@
         <ul>
             <li><a href="{{route('collab.index')}}">Lister</a></li>
             <li><a href="{{route('collab.create')}}">Ajouter</a></li>
-            <li><img src="https://www.gabrielgorgi.com/wp-content/uploads/2019/12/01.jpg"></li>
+            <li>   @if (Auth::check() && Auth::user()->image)
+                    <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Photo de profil de l'admin" >
+                @else
+                    {{-- Optionnel : Image par défaut si aucun admin connecté ou pas d'image --}}
+                    <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar par défaut" >
+                @endif</li>
             <li><a href="{{route('auth.logout')}}">Deconnexion</a></li>
 
         </ul>
@@ -37,7 +42,12 @@
         <div class="container">
 
             <div>
-                <img src="https://www.gabrielgorgi.com/wp-content/uploads/2019/12/01.jpg" alt="">
+                @if (isset($collaborateurs) && $collaborateurs && $collaborateurs->image)
+                    <img src="{{ asset('storage/' . $collaborateurs->image) }}" alt="Image de bienvenue de l'admin">
+                @else
+                    {{-- Optionnel : Image par défaut si pas d'admin ou pas d'image --}}
+                    <img src="{{ asset('images/default_welcome.png') }}" alt="Image de bienvenue par défaut">
+                @endif
             </div>
 
             <div>

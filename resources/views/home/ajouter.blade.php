@@ -18,7 +18,12 @@
     <nav>
         <ul>
             <li><a href="{{route('home.acceuil')}}">Acceuil</a></li>
-            <li><img src="https://www.gabrielgorgi.com/wp-content/uploads/2019/12/01.jpg"></li>
+            <li>   @if (Auth::check() && Auth::user()->image)
+                    <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Photo de profil de l'admin" >
+                @else
+                    {{-- Optionnel : Image par défaut si aucun admin connecté ou pas d'image --}}
+                    <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar par défaut">
+                @endif</li>
             <li><a href="{{route('auth.logout')}}">Deconnexion</a></li>
         </ul>
     </nav>

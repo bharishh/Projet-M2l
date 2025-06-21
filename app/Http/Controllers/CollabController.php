@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CollabController extends Controller
 {
@@ -97,13 +98,14 @@ class CollabController extends Controller
         $collaborateur->ville = $request->ville;
         $collaborateur->telephone = $request->telephone;
         $collaborateur->date_naissance = $request->date_naissance;
+        $collaborateur->age = Carbon::parse($request->input('date_naissance'))->age;
 
         if ($request->filled('password')) {
             $collaborateur->password = bcrypt($request->password);
         }
 
         if ($request->hasFile('image')) {
-            $photoPath = $request->file('image')->store('photos', 'public');
+            $photoPath = $request->file('image')->store('photos', 'public'); /*php artisan storage:link*/
             $collaborateur->image = $photoPath;
         }
 
