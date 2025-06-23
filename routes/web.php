@@ -17,6 +17,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/auth/logout', [AuthController::class,'logout'])->name('auth.logout');
     Route::get('/home/acceuil', function () {return view('home.acceuil');})->name('home.acceuil');
+    Route::get('/home/acceuil', [CollabController::class, 'random'])->name('home.acceuil');
 
     Route::resource('collab', CollabController::class);
 });
+

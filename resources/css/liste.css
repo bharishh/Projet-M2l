@@ -146,6 +146,9 @@ header nav ul li img{
 
 .collaborator-details {
     flex-grow: 1;
+    position: relative;
+    padding-bottom: 45px;
+
 }
 .collaborator-details h3{
     text-align: end;
@@ -174,6 +177,71 @@ header nav ul li img{
     font-size: 0.9em;
     color: #666;
 }
+
+
+.collaborator-details form {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+/* Pour le bouton "Update" */
+.collaborator-details button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.collaborator-actions {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+
+
+.collaborator-actions form {
+    margin: 0;
+    padding: 0;
+}
+
+.collaborator-actions button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.collaborator-actions button:hover {
+    opacity: 0.9;
+}
+
+.collaborator-actions button a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+button
+{
+    padding: 0.5em;
+    background-color: var(--button);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover{
+    background-color: var(--bg-color);
+}
+
 
 /* Responsive adjustments (optional, but recommended) */
 @media (max-width: 768px) {

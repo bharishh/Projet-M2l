@@ -14,12 +14,19 @@ class CollabController extends Controller
      */
     public function index()
     {
-        // Récupère tous les utilisateurs (collaborateurs)
         $collaborateurs = User::all();
 
         // Passe la collection à la vue sous le nom 'collaborateurs'
         return view('home.liste', compact('collaborateurs'));
     }
+
+
+    public function random()
+    {    // Affiche la page d'accueil avec un collaborateur aléatoire
+        $collaborateurs = User::inRandomOrder()->first();
+        return view('home.acceuil', compact('collaborateurs'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

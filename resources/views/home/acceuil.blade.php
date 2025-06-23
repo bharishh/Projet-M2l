@@ -19,13 +19,23 @@
     <nav>
         <ul>
             <li><a href="{{route('collab.index')}}">Lister</a></li>
-            <li><a href="{{route('collab.create')}}">Ajouter</a></li>
+
+            @auth
+                @if(Auth::user()->is_admin)
+                    <li><a href="{{ route('collab.create') }}">Ajouter</a></li>
+                @endif
+            @endauth
+            @if (Auth::check() && !Auth::user()->is_admin)
+            <li><a href="{{ route('collab.edit', Auth::user()->id) }}">Modifier mon Profil</a></li>
+            @endif
+
             <li>   @if (Auth::check() && Auth::user()->image)
                     <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Photo de profil de l'admin" >
                 @else
-                    {{-- Optionnel : Image par défaut si aucun admin connecté ou pas d'image --}}
                     <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar par défaut" >
                 @endif</li>
+
+
             <li><a href="{{route('auth.logout')}}">Deconnexion</a></li>
 
         </ul>
@@ -39,26 +49,32 @@
     <section class="libelle">
         <h2>Avez-vous dit bonjour à : </h2>
 
-        <div class="container">
-
-            <div>
-                @if (isset($collaborateurs) && $collaborateurs && $collaborateurs->image)
-                    <img src="{{ asset('storage/' . $collaborateurs->image) }}" alt="Image de bienvenue de l'admin">
-                @else
-                    {{-- Optionnel : Image par défaut si pas d'admin ou pas d'image --}}
-                    <img src="{{ asset('images/default_welcome.png') }}" alt="Image de bienvenue par défaut">
-                @endif
+            <div class="collaborator-card">
+                @if ($collaborateurs)
+                    <div class="collaborator-category">
+                        {{ $collaborateurs->categorie }}
+                    </div>
+                <div class="collaborator-image">
+                    <img src="{{ asset('storage/' . $collaborateurs->image) }}" alt="Image collaborateur">
+                </div>
+                <div class="collaborator-details">
+                    <p class="collaborator-name">
+                        <strong>{{ $collaborateurs->prenom }} {{ $collaborateurs->nom }}</strong> - ({{ $collaborateurs->age }} ans)
+                    </p>
+                    <p class="collaborator-location">
+                        {{ $collaborateurs->ville }}, {{ $collaborateurs->pays }}
+                    </p>
+                    <p>📲 : <a href="tel:{{ $collaborateurs->telephone }}">{{ $collaborateurs->telephone }}</a></p>
+                    <p>📧 : <a href="mailto:{{ $collaborateurs->email }}">{{ $collaborateurs->email }}</a></p>
+                    <p>🎂 : {{ $collaborateurs->date_naissance }}</p>
+                </div>
             </div>
+            @else
+                <p>Aucun collaborateur à afficher.</p>
+            @endif
 
-            <div>
-                <ul>
 
-
-                </ul>
-            </div>
-            <h3>Technique</h3>
-        </div>
-        <button class="button" type="submit">dire bonjour a un autre Collaborateur</button>
+        <button><a href="{{ route('home.acceuil') }}">Dire bonjour à un autre collaborateur</a></button>
     </section>
 
 </main>

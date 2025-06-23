@@ -55,20 +55,26 @@
                             <p>
                                <p><strong>{{ $collaborateur->prenom }} {{ $collaborateur->nom }}</strong> - ({{ $collaborateur->age }} ans)</p>
                             {{ $collaborateur->ville }}, {{ $collaborateur->pays }}
-                            <form action="{{ route('collab.destroy', $collaborateur) }}" method="post" onsubmit="return confirm('Confirmer la suppression ?');">
-                                @csrf
-                                @method('DELETE')
-                                <button>Supprimer</button>
-                            </form>
-                            <button>
-                                <a href="{{route('collab.edit', $collaborateur)}}">Update</a>
-                            </button>
 
                             <h3>{{ $collaborateur->categorie }}</h3>
                             📲 : <a href="tel:{{ $collaborateur->telephone }}">{{ $collaborateur->telephone }}</a><br>
                             📧 : <a href="mailto:{{ $collaborateur->email }}">{{ $collaborateur->email }}</a><br>
                             🎂 : {{ $collaborateur->date_naissance }}
+
+                            @if (Auth::check() && Auth::user()->is_admin)
+                                <div class="collaborator-actions">
+                                    <form action="{{ route('collab.destroy', $collaborateur) }}" method="post" onsubmit="return confirm('Confirmer la suppression ?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Supprimer</button>
+                                    </form>
+                                    <button>
+                                        <a href="{{route('collab.edit', $collaborateur)}}">Update</a>
+                                    </button>
+                                </div>
+                            @endif
                         </div>
+
                     </div>
                 @endforeach
 

@@ -83,26 +83,67 @@ header nav ul li img{
     flex-direction: column;
     gap: 2rem;
 }
-
-.container{
-    border: 2px solid var(--button);
-    width: 50rem;
-    display: grid;
-    grid-template-columns: 2fr 2fr 3fr;
-    gap: 2rem;
-    padding: 2rem 1rem;
-}
-.container h3 {
-    text-align: end;
-}
-
-.container div img{
-    height: 100px;
-    width: 100px;
-    border-radius:50%;
-
+.collaborator-card {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #fff;
 }
 
+.collaborator-category {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: var(--button);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    max-width: 100px;
+    word-wrap: break-word;
+    height: auto;
+    display: block;
+}
+
+.collaborator-image {
+    flex: 0 0 200px;
+    max-width: 200px;
+    margin-right: 20px;
+}
+
+.collaborator-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.collaborator-details {
+    flex: 1;
+}
+
+.collaborator-name {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.collaborator-location {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.collaborator-details p {
+    margin: 5px 0;
+}
 
 button
 {
